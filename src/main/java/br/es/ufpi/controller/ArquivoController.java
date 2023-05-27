@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import br.es.ufpi.entity.Arquivo;
 import br.es.ufpi.service.ArquivoService;
 
+import java.util.List;
+
 @Controller
 public class ArquivoController {
     @Autowired
@@ -31,5 +33,12 @@ public class ArquivoController {
     public String listarArquivos(Model model) {
         model.addAttribute("arquivos", arquivoService.listarArquivos());
         return "listaimagens";
+    }
+
+    @GetMapping("/listarminiaturas")
+    public String listarArquivosThumbnail(Model model) {
+        List<Arquivo> arquivos = arquivoService.listarArquivosThumbnail();
+        model.addAttribute("arquivos", arquivos);
+        return "listarminiaturas";
     }
 }

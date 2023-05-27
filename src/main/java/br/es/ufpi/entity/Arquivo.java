@@ -11,7 +11,6 @@ public class Arquivo {
     private Long id;
     private String nome;
     private String caminho;
-
     public Arquivo(){}
 
     // Getters e setters
