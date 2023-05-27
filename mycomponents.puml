@@ -1,0 +1,70 @@
+@startuml
+
+package "br.es.ufpi" {
+  
+  class MyImagesApplication {
+    +main(String[]): void
+  }
+  
+  package "controller" {
+    class UsuarioController {
+      +exibirFormulario(Model): String
+      +salvarUsuario(Usuario): String
+      +listarUsuarios(Model): String
+    }
+    
+    class ArquivoController {
+      +exibirFormularioUpload(): String
+      +realizarUpload(MultipartFile): String
+      +listarArquivos(Model): String
+      +listarArquivosThumbnail(Model): String
+    }
+  }
+  
+  package "entity" {
+    class Usuario {
+      -id: Long
+      -nomeUsuario: String
+      -nomeCompleto: String
+      -email: String
+      -senha: String
+    }
+    
+    class Arquivo {
+      -id: Long
+      -nome: String
+      -caminho: String
+    }
+  }
+  
+  package "repository" {
+    interface UsuarioRepository {
+      +findAll(): List<Usuario>
+      +save(Usuario): Usuario
+    }
+    
+    interface ArquivoRepository {
+      +findAll(): List<Arquivo>
+      +save(Arquivo): Arquivo
+    }
+  }
+  
+  package "service" {
+    class UsuarioService {
+      +salvarUsuario(Usuario): void
+      +listarUsuarios(): List<Usuario>
+    }
+    
+    class ArquivoService {
+      +salvarArquivo(MultipartFile): void
+      +listarArquivos(): List<Arquivo>
+      +listarArquivosThumbnail(): List<Arquivo>
+    }
+  }
+  
+  class WebMvcConfig {
+    +addResourceHandlers(ResourceHandlerRegistry): void
+  }
+}
+
+@enduml
