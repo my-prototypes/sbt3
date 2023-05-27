@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Imagens</title>
+</head>
+<body>
+    <h1>Listagem de Imagens</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Arquivo</th>
+                <th>Caminho</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="arquivo : ${arquivos}">
+                <td th:text="${arquivo.nome}"></td>
+                <td th:text="${arquivo.caminho}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
